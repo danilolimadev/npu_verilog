@@ -15,13 +15,17 @@ npu-verilog/
 │   └── NPU_V7.1_Datasheet.pdf
 ├── rtl/
 │   ├── npu_top.v
-│   ├── mac.v
+│   ├── mac_module.v
 │   ├── relu.v
-│   ├── piso.v
+│   ├── input_buffer.v
+│   ├── piso_out.v
+│   ├── piso_deb.v
 │   ├── fifo.v
 │   └── mux_out.v
 ├── tb/
 │   ├── tb_npu_top.v
+│   ├── tb_piso_out.v
+│   ├── tb_piso_deb.v
 │   └── tb_mac.v
 └── .gitignore
 ```
