@@ -130,7 +130,7 @@ module npu_fsm_top (
 
   relu_module relu1 (
                 .Data_Reg(MAC0_Y),
-                .En_ReLU(En_ReLU),
+                .EN_ReLU(En_ReLU),
                 .BYPASS_ReLU(BYPASS_ReLU),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT),
@@ -139,7 +139,7 @@ module npu_fsm_top (
 
   relu_module relu2 (
                 .Data_Reg(MAC1_Y),
-                .En_ReLU(En_ReLU),
+                .EN_ReLU(En_ReLU),
                 .BYPASS_ReLU(BYPASS_ReLU),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT),
