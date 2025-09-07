@@ -4,11 +4,11 @@ module mac_module (
     input  RST_MAC, //seletor do mux
     input  [7:0] BIAS_IN, //uma das entradas do mux
     input  signed [7:0] A, B, //operandos
-    output signed [15:0] Y //resultado
+    output reg signed [15:0] Y //resultado
 );
 
     // 8 bit multiplier
-    reg signed [15:0] mult_out;
+    wire signed [15:0] mult_out;
     assign mult_out = A * B;
 
     // 16 bit 2's Complement Adder with Saturation Control (2CASC)

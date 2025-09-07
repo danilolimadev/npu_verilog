@@ -3,7 +3,7 @@ module input_buffer (
     input  CLR_BUF_IN, //clear
     input  EN_BUF_IN, //enable
     input  [7:0] DA, DB, DC, DD, //entradas
-    output [7:0] QA, QB, QC, QD //saídas
+    output reg [7:0] QA, QB, QC, QD //saídas
 );
 
     always @(posedge CLKEXT or negedge CLR_BUF_IN) begin
