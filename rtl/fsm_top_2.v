@@ -70,8 +70,14 @@ module npu_fsm_top (
   reg SHIFT_OUT;
   wire [7:0] PISO_DOUT;
 
+   // PISO_DEB interface
+  reg EN_PISO_DEB;
+  reg CLR_PISO_DEB;
+  reg SHIFT_DEB;
+  wire [7:0] PISO1_DOUT;
+
   // FIFO interface
-  reg fifo_wf_en;
+  reg fifo_wr_en;
   reg fifo_rd_en;
   wire [7:0] fifo_data_out;
   reg  [7:0] fifo_data_in;
@@ -82,7 +88,9 @@ module npu_fsm_top (
   // Comparator
   reg EN_COMP;
   reg RST_COMP;
-  wire [15:0] COMP_OUT;
+  wire [7:0] index;
+  wire [15:0] largest;
+
 
   // temporary registers
   reg [15:0] mac0_out_reg;
@@ -123,7 +131,6 @@ module npu_fsm_top (
   relu_module relu1 (
                 .Data_Reg(MAC0_Y),
                 .En_ReLU(En_ReLU),
-                .En_MAC_ReLU(1'b1),
                 .BYPASS_ReLU(BYPASS_ReLU),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT)
@@ -133,7 +140,6 @@ module npu_fsm_top (
   relu_module relu2 (
                 .Data_Reg(MAC1_Y),
                 .En_ReLU(En_ReLU),
-                .En_MAC_ReLU(1'b1),
                 .BYPASS_ReLU(BYPASS_ReLU),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT)
@@ -155,7 +161,7 @@ module npu_fsm_top (
          .clk(CLKEXT),
          .rst(RST_GLO),
          .enable(1'b1),
-         .wf_en(fifo_wf_en),
+         .wr_en(fifo_wr_en),
          .rd_en(fifo_rd_en),
          .data_in(fifo_data_in),
          .data_out(fifo_data_out),
@@ -163,26 +169,41 @@ module npu_fsm_top (
          .full(FIFO_FULL)
        );
 
-  mux_out final_mux (
-            .CLKEXT(CLKEXT),
-            .RST_GLO(RST_GLO),
-            .SEL_OUT(SEL_OUT),
-            .fifo_data(fifo_data_out),
-            .piso_data(PISO_DOUT),
-            .cmp_data(COMP_OUT[7:0]),
-            .relu_data(ReLU_OUT[7:0]),
-            .mac_data(MAC_Y[7:0]),
-            .D_OUT(D_OUT)
-          );
-
   auto_comparator comp (
-                    .in1(MAC_Y),
-                    .in2(COMP_OUT),
+                    .in1(ReLU0_OUT),
+                    .in2(ReLU1_OUT),
                     .RST_COMP(RST_COMP),
                     .EN_COMP(EN_COMP),
                     .CLKEXT(CLKEXT),
-                    .Output(COMP_OUT)
+                    .trig(En_ReLU),
+                    .index(index),
+                    .largest(largest)
                   );
+
+  piso_deb piso2 (
+             .CLKEXT(CLKEXT),
+             .RST_GLO(RST_GLO),
+             .EN_PISO_DEB(EN_PISO_DEB),
+             .CLR_PISO_DEB(CLR_PISO_DEB),
+             .SHIFT_DEB(SHIFT_DEB),
+             .SSFR(SSFR),
+             .CON_SIG(CON_SIG),
+             .MAC2(MAC1_Y),
+             .MAC1(MAC0_Y),
+             .QA(QA), .QB(QB), .QC(QC), .QD(QD),
+             .D_OUT(PISO1_DOUT)
+           );
+
+  mux_out final_mux (
+            .SEL_OUT(SEL_OUT),
+            .fifo_data(fifo_data_out),
+            .piso_out_data(PISO_DOUT),
+            .index_data(index),
+            .msb_largest_data(largest[15:8]),
+            .lsb_largest_data(largest[7:0]),
+            .piso_deb_data(PISO1_DOUT),
+            .D_OUT(D_OUT)
+          );
 
   // ------------------------------------------------------------------
   // Start synchronizer
@@ -246,7 +267,7 @@ module npu_fsm_top (
     EN_PISO_OUT = 1'b0;
     CLR_PISO_OUT = 1'b0;
     SHIFT_OUT = 1'b0;
-    fifo_wf_en = 1'b0;
+    fifo_wr_en = 1'b0;
     fifo_rd_en = 1'b0;
     fifo_data_in = 8'h00;
     SEL_OUT = 3'b000;
@@ -288,7 +309,7 @@ module npu_fsm_top (
       WRITE_FIFO:
       begin
         // escreve dois bytes na FIFO (alto primeiro, depois baixo)
-        fifo_wf_en = 1'b1;
+        fifo_wr_en = 1'b1;
         if (cycle_cnt == 0)
         begin
           fifo_data_in = ReLU_OUT[15:8];
