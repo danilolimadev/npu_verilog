@@ -8,35 +8,28 @@ module auto_comparator (
     output reg          [7:0] index,
     output reg  signed [15:0] largest
   );
-  reg [7:0] base;
-  reg signed [15:0] max_val;
-  reg [7:0]         max_idx;
+  reg [7:0] cont;
 
   always @(posedge CLKEXT)
   begin
     if (RST_COMP)
     begin
-      largest <= 16'sh8000;
+      largest <= 16'sh8000; // menor número negativo
       index   <= 8'd0;
-      base    <= 8'd0;
+      cont    <= 8'd0;
     end
     else if (EN_COMP && trig)
     begin
-      max_val = largest;
-      max_idx = index;
-      if (in1 > max_val)
-      begin
-        max_val = in1;
-        max_idx = base + 8'd1;
+      // compara as duas entradas com o maior valor armazenado
+      if (in1 > largest) begin
+        largest <= in1;
+        index   <= cont + 8'd1;  // posição de in1
       end
-      if (in2 > max_val)
-      begin
-        max_val = in2;
-        max_idx = base + 8'd2;
+      if (in2 > largest) begin
+        largest <= in2;
+        index   <= cont + 8'd2;  // posição de in2
       end
-      largest <= max_val;
-      index   <= max_idx;
-      base    <= base + 8'd2;
+      cont <= cont + 8'd2;  // avança para o próximo par
     end
   end
 endmodule
