@@ -8,10 +8,10 @@ module piso_deb (
     input  wire [15:0] CON_SIG,        // control signals group as 16-bit
     input  wire [15:0] MAC2,           // MAC2[15:0]
     input  wire [15:0] MAC1,           // MAC1[15:0]
-    input  wire  [7:0] DD,
-    input  wire  [7:0] DC,
-    input  wire  [7:0] DB,
-    input  wire  [7:0] DA,
+    input  wire  [7:0] QD,
+    input  wire  [7:0] QC,
+    input  wire  [7:0] QB,
+    input  wire  [7:0] QA,
     output reg  [7:0]  D_OUT          
 );
 
@@ -50,7 +50,7 @@ module piso_deb (
                             dbg_bytes[8]  <= DD;
                             dbg_bytes[9]  <= DC;
                             dbg_bytes[10] <= DB;
-                            dbg_bytes[11] <= DA;
+                            dbg_bytes[11] <= QA;
                             byte_idx <= 4'd0;
                             loaded   <= 1'b1;
                             D_OUT    <= 8'h00;
@@ -66,7 +66,7 @@ module piso_deb (
                             dbg_bytes[8]  <= DD;
                             dbg_bytes[9]  <= DC;
                             dbg_bytes[10] <= DB;
-                            dbg_bytes[11] <= DA;
+                            dbg_bytes[11] <= QA;
                             byte_idx <= 4'd1;
                             loaded   <= 1'b1;
                             D_OUT    <= SSFR[15:8];
@@ -96,7 +96,7 @@ module piso_deb (
                                 dbg_bytes[8]  <= DD;
                                 dbg_bytes[9]  <= DC;
                                 dbg_bytes[10] <= DB;
-                                dbg_bytes[11] <= DA;
+                                dbg_bytes[11] <= QA;
                                 byte_idx <= 4'd0;
                                 loaded   <= 1'b1;
                             end
