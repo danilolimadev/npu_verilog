@@ -1,0 +1,425 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/CI DIGITAL/2o_semestre/presenca_semana
+vauto_comparator
+Z0 !s110 1757295773
+!i10b 1
+!s100 S<gOKHJDT<jQWIFCB?U=70
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IKKA_[`YNU:0OfZhfFE4120
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog
+Z4 w1757295542
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v
+!i122 160
+L0 1 23
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1757295773.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+vfifo
+R0
+!i10b 1
+!s100 h4IjBJVaEDO3<MzNCR;zG1
+R1
+IlC`gbHX>HVZ>Y9OaPfBiY2
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v
+!i122 161
+L0 1 52
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v|
+!i113 1
+R7
+R8
+vfifo_tb
+Z9 !s110 1757295775
+!i10b 1
+!s100 nNMhoH9Nohii60LK?A:K60
+R1
+IF2m5BdmiKkn8B<A91e;@a1
+R2
+R3
+Z10 w1757088661
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v
+!i122 170
+L0 3 58
+R5
+r1
+!s85 0
+31
+Z11 !s108 1757295775.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v|
+!i113 1
+R7
+R8
+vinput_buffer
+Z12 !s110 1757295774
+!i10b 1
+!s100 ]10TLnmfMdNJ7ndR7<g833
+R1
+IEh@gmX^f9@dW1n>nMgHd;2
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v
+!i122 163
+Z13 L0 1 24
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v|
+!i113 1
+R7
+R8
+vmac_module
+R12
+!i10b 1
+!s100 QTB44cbk0eGT06HCJiG=F2
+R1
+ID>4LR9mZK<PQ^l`DYWVIi1
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v
+!i122 164
+L0 1 46
+R5
+r1
+!s85 0
+31
+Z14 !s108 1757295774.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v|
+!i113 1
+R7
+R8
+vmux_out
+R12
+!i10b 1
+!s100 11`c?SA2kL:Q:_9WR@ehY3
+R1
+IQUkPXSONmKZ`5]LOaYRlH2
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v
+!i122 165
+R13
+R5
+r1
+!s85 0
+31
+R14
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v|
+!i113 1
+R7
+R8
+vnpu_fsm_top
+R0
+!i10b 1
+!s100 CSf[oo8_TG`>YYT_Fk^XV1
+R1
+I@YEM?Ui?_2iFa53X6FD@F3
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v
+!i122 162
+L0 6 339
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v|
+!i113 1
+R7
+R8
+vnpu_top
+R12
+!i10b 1
+!s100 X]1ANHfPnI?Z:TEK@fF0L2
+R1
+I6kR`AfV`E<Mb]7oQz8LBU1
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v
+!i122 166
+L0 4 48
+R5
+r1
+!s85 0
+31
+R14
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v|
+!i113 1
+R7
+R8
+vpiso_deb
+R9
+!i10b 1
+!s100 T3?4j233`[amnUgI>IeD51
+R1
+IOT[1V::nkb?kRFbOAc1@<0
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v
+!i122 167
+L0 1 114
+R5
+r1
+!s85 0
+31
+R11
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v|
+!i113 1
+R7
+R8
+vpiso_out
+R9
+!i10b 1
+!s100 SGkCNH=<=VCRFj@9dcjbU3
+R1
+I=D4jn8=1o^9XN<kH?9kCh0
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v
+!i122 168
+L0 1 40
+R5
+r1
+!s85 0
+31
+R11
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v|
+!i113 1
+R7
+R8
+vrelu_module
+R9
+!i10b 1
+!s100 g3boObEH0jKibIR@Pf7Zb0
+R1
+IF`d7^bNO>N_oEfJ]R33`e3
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v
+!i122 169
+L0 4 31
+R5
+r1
+!s85 0
+31
+R11
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v|
+!i113 1
+R7
+R8
+vtb_input_buffer
+Z15 !s110 1757295776
+!i10b 1
+!s100 fi84D8dVBgdI>ANEQVd1n2
+R1
+I>hfXM^C3oZfTm]NEJO]za1
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v
+!i122 171
+L0 3 37
+R5
+r1
+!s85 0
+31
+Z16 !s108 1757295776.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v|
+!i113 1
+R7
+R8
+vtb_mac_module
+R15
+!i10b 1
+!s100 lljOWDaMR8K6@@EE<[eIo1
+R1
+Ia1k5BaN6joQ:D4m<^bn:C0
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v
+!i122 172
+L0 3 82
+R5
+r1
+!s85 0
+31
+R16
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v|
+!i113 1
+R7
+R8
+vtb_mux_out
+R15
+!i10b 1
+!s100 Raa69gjGBP@?BWY3Ob4`O0
+R1
+Ife[[L^aCX0nTQ]hL51CID0
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v
+!i122 173
+L0 3 51
+R5
+r1
+!s85 0
+31
+R16
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v|
+!i113 1
+R7
+R8
+vtb_npu_top
+Z17 !s110 1757295777
+!i10b 1
+!s100 _UjH?A9:j3R=GGX6nfIS60
+R1
+IaLSDXPaSnXl<dzd0n]@6]1
+R2
+R3
+R4
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v
+!i122 176
+L0 5 136
+R5
+r1
+!s85 0
+31
+!s108 1757295777.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v|
+!i113 1
+R7
+R8
+vtb_piso_deb
+R15
+!i10b 1
+!s100 EUK186HA7F9GS6:L27jE`2
+R1
+I7:M<MMhdn`^BfHSk9H7]V3
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v
+!i122 174
+L0 3 133
+R5
+r1
+!s85 0
+31
+R16
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v|
+!i113 1
+R7
+R8
+vtb_piso_out
+R17
+!i10b 1
+!s100 dRX^7?6VBT5g8j?K@Rf7U3
+R1
+I^eXW@cIkENioBndcLU08A2
+R2
+R3
+R10
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v
+!i122 175
+L0 3 72
+R5
+r1
+!s85 0
+31
+R16
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v|
+!i113 1
+R7
+R8
+vtestbench
+!s110 1757286708
+!i10b 1
+!s100 4HZJi8[@ZLfj;d^kCzcRz3
+R1
+ITXWaG<8K7hZS@ahODP]4m0
+R2
+R3
+w1757032798
+8D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/testbench.v
+FD:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/testbench.v
+!i122 51
+L0 4 152
+R5
+r1
+!s85 0
+31
+!s108 1757286708.000000
+!s107 D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/testbench.v|
+!s90 -reportprogress|300|-work|work|-stats=none|D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/testbench.v|
+!i113 1
+R7
+R8

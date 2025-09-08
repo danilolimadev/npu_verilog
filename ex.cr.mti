@@ -1,0 +1,120 @@
+{D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/fifo_tb.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module fifo_tb
+
+Top level modules:
+	fifo_tb
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_npu_top.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_npu_top
+
+Top level modules:
+	tb_npu_top
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fsm_top.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module npu_fsm_top
+
+Top level modules:
+	npu_fsm_top
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/input_buffer.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module input_buffer
+
+Top level modules:
+	input_buffer
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mux.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_out
+
+Top level modules:
+	mux_out
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_input_buffer.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_input_buffer
+
+Top level modules:
+	tb_input_buffer
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_out.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module piso_out
+
+Top level modules:
+	piso_out
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_out.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_piso_out
+
+Top level modules:
+	tb_piso_out
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/relu_module.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module relu_module
+
+Top level modules:
+	relu_module
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/piso_deb.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module piso_deb
+
+Top level modules:
+	piso_deb
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/npu_top.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module npu_top
+
+Top level modules:
+	npu_top
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/mac_module.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mac_module
+
+Top level modules:
+	mac_module
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_piso_deb.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_piso_deb
+
+Top level modules:
+	tb_piso_deb
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mac_module.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_mac_module
+
+Top level modules:
+	tb_mac_module
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/auto_comparator.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module auto_comparator
+
+Top level modules:
+	auto_comparator
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/tb/tb_mux.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_mux_out
+
+Top level modules:
+	tb_mux_out
+
+} {} {}} {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v} {1 {vlog -work work -stats=none {D:/CI DIGITAL/2o_semestre/presenca_semana/trabalho/npu_verilog/rtl/fifo.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module fifo
+
+Top level modules:
+	fifo
+
+} {} {}}

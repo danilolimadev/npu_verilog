@@ -18,8 +18,9 @@ module npu_fsm_top (
     input  [7:0] DC,
     input  [7:0] DD,
 
-    // bias
-    input  [7:0] BIAS_IN,
+    // bias inputs (16-bit each)
+    input  [15:0] BIAS_N1,
+    input  [15:0] BIAS_N2,
 
     // primary output
     output [7:0] D_OUT,       // final multiplexed output
@@ -61,7 +62,7 @@ module npu_fsm_top (
 
   // ReLU interface
   reg En_ReLU;
-  reg BYPASS_ReLU;
+  reg BYPASS_ReLU1, BYPASS_ReLU2;
   wire [15:0] ReLU0_OUT, ReLU1_OUT;
 
   // PISO_OUT interface
@@ -101,8 +102,8 @@ module npu_fsm_top (
   // ------------------------------------------------------------------
   input_buffer ib (
                  .CLKEXT(CLKEXT),
-                 .CLR_BUF_IN(~RST_GLO),
-                 .EN_BUF_IN(state==LOAD_INPUT),
+                 .CLR_BUF_IN(CON_SIG[14]),
+                 .EN_BUF_IN(CON_SIG[15]),
                  .DA(DA), .DB(DB), .DC(DC), .DD(DD),
                  .QA(QA), .QB(QB), .QC(QC), .QD(QD)
                );
@@ -111,7 +112,7 @@ module npu_fsm_top (
                .CLKEXT(CLKEXT),
                .EN_MAC(EN_MAC),
                .RST_MAC(RST_MAC),
-               .BIAS_IN(DA),
+               .BIAS_IN(BIAS_N1),
                .A(QA),
                .B(QB),
                .Y(MAC0_Y)
@@ -122,7 +123,7 @@ module npu_fsm_top (
                .CLKEXT(CLKEXT),
                .EN_MAC(EN_MAC),
                .RST_MAC(RST_MAC),
-               .BIAS_IN(DC),
+               .BIAS_IN(BIAS_N2),
                .A(QC),
                .B(QD),
                .Y(MAC1_Y)
@@ -131,7 +132,7 @@ module npu_fsm_top (
   relu_module relu1 (
                 .Data_Reg(MAC0_Y),
                 .EN_ReLU(En_ReLU),
-                .BYPASS_ReLU(BYPASS_ReLU),
+                .BYPASS_ReLU(BYPASS_ReLU1),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT),
                 .ReLU_OUT(ReLU0_OUT)
@@ -140,7 +141,7 @@ module npu_fsm_top (
   relu_module relu2 (
                 .Data_Reg(MAC1_Y),
                 .EN_ReLU(En_ReLU),
-                .BYPASS_ReLU(BYPASS_ReLU),
+                .BYPASS_ReLU(BYPASS_ReLU2),
                 .RST_GLO(RST_GLO),
                 .CLKEXT(CLKEXT),
                 .ReLU_OUT(ReLU1_OUT)
@@ -197,10 +198,8 @@ module npu_fsm_top (
   mux_out final_mux (
             .SEL_OUT(SEL_OUT),
             .fifo_data(fifo_data_out),
-            .piso_out_data(PISO_DOUT),
-            .index_data(index),
-            .msb_largest_data(largest[15:8]),
-            .lsb_largest_data(largest[7:0]),
+            .target_lsb(largest[7:0]),   // target[7:0]
+            .target_msb(largest[15:8]),  // target[15:8]
             .piso_deb_data(PISO1_DOUT),
             .D_OUT(D_OUT)
           );
@@ -259,20 +258,41 @@ module npu_fsm_top (
     else
       DONE = 1'b0;
 
-    // default control signals
-    EN_MAC = 1'b0;
-    RST_MAC = RST_GLO;
-    En_ReLU = 1'b0;
-    BYPASS_ReLU = 1'b0;
-    EN_PISO_OUT = 1'b0;
-    CLR_PISO_OUT = 1'b0;
-    SHIFT_OUT = 1'b0;
-    fifo_wr_en = 1'b0;
+    // CON_SIG mapping according to schematic
+    // CON_SIG[15] -> EN_BUF_IN
+    // CON_SIG[14] -> CLR_BUF_IN
+    // CON_SIG[13] -> EN_MAC
+    EN_MAC = CON_SIG[13];
+    // CON_SIG[12] -> RST_MAC
+    RST_MAC = CON_SIG[12];
+    // CON_SIG[11] -> EN_ReLU
+    En_ReLU = CON_SIG[11];
+    // CON_SIG[10] -> SHIFT_OUT
+    SHIFT_OUT = CON_SIG[10];
+    // CON_SIG[9] -> EN_PISO_OUT
+    EN_PISO_OUT = CON_SIG[9];
+    // CON_SIG[8] -> CLR_PISO_OUT
+    CLR_PISO_OUT = CON_SIG[8];
+    // CON_SIG[7] -> WR_EN (FIFO)
+    fifo_wr_en = CON_SIG[7];
+    
+    // SSFR mapping according to schematic
+    // SSFR[15:13] -> SEL_OUT[2:0]
+    SEL_OUT = SSFR[15:13];
+    // SSFR[12] -> BYPASS_ReLU1
+    BYPASS_ReLU1 = SSFR[12];
+    // SSFR[11] -> BYPASS_ReLU2
+    BYPASS_ReLU2 = SSFR[11];
+    // SSFR[10] -> EN_COMP
+    EN_COMP = SSFR[10];
+    // SSFR[9] -> RST_COMP
+    RST_COMP = SSFR[9];
+    // SSFR[8] -> EN_FIFO (handled in FIFO instantiation)
+    // SSFR[7] -> RST_FIFO (handled in FIFO instantiation)
+    
+    // Default values for other signals
     fifo_rd_en = 1'b0;
     fifo_data_in = 8'h00;
-    SEL_OUT = 3'b000;
-    EN_COMP = 1'b0;
-    RST_COMP = RST_GLO;
 
     case (state)
       IDLE:

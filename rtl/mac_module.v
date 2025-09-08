@@ -2,7 +2,7 @@ module mac_module (
     input  CLKEXT, //clock
     input  EN_MAC, //enable
     input  RST_MAC, //seletor do mux
-    input  [7:0] BIAS_IN, //uma das entradas do mux
+    input  signed [15:0] BIAS_IN, //bias de 16 bits
     input  signed [7:0] A, B, //operandos
     output reg signed [15:0] Y //resultado
 );
@@ -29,9 +29,9 @@ module mac_module (
         endcase
     end
 
-    // Estende o BIAS_IN para 16 bits
+    // BIAS_IN já é de 16 bits
     wire signed [15:0] bias_ext;
-    assign bias_ext = {8'h00 , BIAS_IN };
+    assign bias_ext = BIAS_IN;
 
     // Mux
     wire signed [15:0] next_val;

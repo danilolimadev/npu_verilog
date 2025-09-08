@@ -10,7 +10,7 @@ module tb_npu_top;
     reg  [15:0] SSFR;
     reg  [15:0] CON_SIG;
     reg  [7:0]  DA, DB, DC, DD;
-    reg  [7:0]  BIAS_IN;
+    reg  [15:0] BIAS_N1, BIAS_N2;
     wire [7:0]  D_OUT;
     wire        FIFO_FULL;
     wire        FIFO_EMPTY;
@@ -27,7 +27,8 @@ module tb_npu_top;
         .DB(DB),
         .DC(DC),
         .DD(DD),
-        .BIAS_IN(BIAS_IN),
+        .BIAS_N1(BIAS_N1),
+        .BIAS_N2(BIAS_N2),
         .D_OUT(D_OUT),
         .FIFO_FULL(FIFO_FULL),
         .FIFO_EMPTY(FIFO_EMPTY),
@@ -52,7 +53,8 @@ module tb_npu_top;
         DB = 8'h00;
         DC = 8'h00;
         DD = 8'h00;
-        BIAS_IN = 8'h00;
+        BIAS_N1 = 16'h0000;
+        BIAS_N2 = 16'h0000;
         
         #20;
         
@@ -67,11 +69,12 @@ module tb_npu_top;
         DB = 8'h34;
         DC = 8'h56;
         DD = 8'h78;
-        BIAS_IN = 8'h10;
+        BIAS_N1 = 16'h0010;
+        BIAS_N2 = 16'h0020;
         SSFR = 16'h0001;
         #10;
         $display("Tempo: %t - Dados configurados", $time);
-        $display("  DA = %h, DB = %h, DC = %h, DD = %h, BIAS = %h", DA, DB, DC, DD, BIAS_IN);
+        $display("  DA = %h, DB = %h, DC = %h, DD = %h, BIAS_N1 = %h, BIAS_N2 = %h", DA, DB, DC, DD, BIAS_N1, BIAS_N2);
         
         $display("\n=== Teste 3: Iniciar Operacao ===");
         START = 1;
@@ -102,7 +105,8 @@ module tb_npu_top;
         DB = 8'hCD;
         DC = 8'hEF;
         DD = 8'h01;
-        BIAS_IN = 8'h20;
+        BIAS_N1 = 16'h0030;
+        BIAS_N2 = 16'h0040;
         #10;
         
         START = 1;
