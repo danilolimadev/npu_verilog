@@ -322,7 +322,8 @@ module npu_fsm_top (
       RELU_STAGE:
       begin
         En_ReLU = 1'b1;
-        BYPASS_ReLU = 1'b0;
+        BYPASS_ReLU1 = 1'b0;
+        BYPASS_ReLU2 = 1'b0;
         next_state = WRITE_FIFO;
       end
 
