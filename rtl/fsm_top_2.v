@@ -125,8 +125,7 @@ module npu_fsm_top (
                 .En_ReLU(En_ReLU),
                 .En_MAC_ReLU(1'b1),
                 .BYPASS_ReLU(BYPASS_ReLU),
-                .RST_GLO(RST_GLO),
-                .CLKEXT(CLKEXT)
+                .CLK(CLKEXT),
                 .ReLU_OUT(ReLU0_OUT)
               );
 
@@ -135,8 +134,7 @@ module npu_fsm_top (
                 .En_ReLU(En_ReLU),
                 .En_MAC_ReLU(1'b1),
                 .BYPASS_ReLU(BYPASS_ReLU),
-                .RST_GLO(RST_GLO),
-                .CLKEXT(CLKEXT)
+                .CLK(CLKEXT),
                 .ReLU_OUT(ReLU1_OUT)
               );
 
@@ -170,17 +168,17 @@ module npu_fsm_top (
             .fifo_data(fifo_data_out),
             .piso_data(PISO_DOUT),
             .cmp_data(COMP_OUT[7:0]),
-            .relu_data(ReLU_OUT[7:0]),
-            .mac_data(MAC_Y[7:0]),
+            .relu_data(ReLU0_OUT[7:0]),
+            .mac_data(MAC0_Y[7:0]),
             .D_OUT(D_OUT)
           );
 
   auto_comparator comp (
-                    .in1(MAC_Y),
-                    .in2(COMP_OUT),
+                    .In_Read(MAC0_Y),
+                    .In_COMP(16'h0000),
                     .RST_COMP(RST_COMP),
                     .EN_COMP(EN_COMP),
-                    .CLKEXT(CLKEXT),
+                    .CLK(CLKEXT),
                     .Output(COMP_OUT)
                   );
 
@@ -291,12 +289,12 @@ module npu_fsm_top (
         fifo_wf_en = 1'b1;
         if (cycle_cnt == 0)
         begin
-          fifo_data_in = ReLU_OUT[15:8];
+          fifo_data_in = ReLU0_OUT[15:8];
           next_state = WRITE_FIFO; // permanece para a segunda escrita
         end
         else
         begin
-          fifo_data_in = ReLU_OUT[7:0];
+          fifo_data_in = ReLU0_OUT[7:0];
           next_state = OUTPUT_SHIFT;
         end
       end
@@ -337,8 +335,8 @@ module npu_fsm_top (
     begin
       if (state == COMPUTE && next_state == RELU_STAGE)
       begin
-        mac0_out_reg <= MAC1_Y;
-        mac1_out_reg <= MAC2_Y; // duplicado como exemplo
+        mac0_out_reg <= MAC0_Y;
+        mac1_out_reg <= MAC1_Y;
       end
     end
   end

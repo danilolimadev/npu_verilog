@@ -115,7 +115,7 @@ relu_module relu0 (
     .En_ReLU(En_ReLU),
     .En_MAC_ReLU(1'b1),
     .BYPASS_ReLU(BYPASS_ReLU),
-    .RST_ReLU(RST_GLO),
+    .CLK(CLKEXT),
     .ReLU_OUT(ReLU_OUT)
 );
 
@@ -156,7 +156,7 @@ mux_out final_mux (
 
 auto_comparator comp (
     .In_Read(MAC_Y),
-    .In_COMP(COMP_OUT),
+    .In_COMP(16'h0000),
     .RST_COMP(RST_COMP),
     .EN_COMP(EN_COMP),
     .CLK(CLKEXT),
@@ -186,6 +186,8 @@ always @(posedge CLKEXT or posedge RST_GLO) begin
     end else begin
         state <= next_state;
         if (state == COMPUTE)
+            cycle_cnt <= cycle_cnt + 1'b1;
+        else if (state == WRITE_FIFO)
             cycle_cnt <= cycle_cnt + 1'b1;
         else
             cycle_cnt <= 8'd0;
