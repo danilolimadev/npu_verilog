@@ -2,6 +2,16 @@
 // Top-level FSM controller para o NPU — escrito em Verilog (compatível Verilog-2001)
 // Objetivo: integrar módulos existentes em rtl/ sem usar SystemVerilog.
 // Adapte sinais e nomes conforme os módulos reais do seu repositório.
+//
+// FSM States:
+// IDLE: Waiting for START signal
+// LOAD_INPUT: Load input data into input buffer
+// COMPUTE: Execute MAC operations for specified cycles
+// RELU_STAGE: Apply ReLU activation and enable comparator
+// WRITE_FIFO: Write comparison result to FIFO
+// OUTPUT_SHIFT: Output data through PISO
+// DEBUG_MODE: Optional debug output through PISO_DEB
+// FINISH: Complete operation and return to IDLE
 
 module npu_fsm_top (
     input  CLKEXT,      // main clock
@@ -28,7 +38,8 @@ module npu_fsm_top (
 
     // status
     output reg BUSY,
-    output reg DONE
+    output reg DONE,
+    output reg [3:0] STATE_DEBUG  // debug: mostra estado atual
   );
 
   // ------------------------------------------------------------------
@@ -40,7 +51,8 @@ module npu_fsm_top (
   parameter RELU_STAGE   = 4'd3;
   parameter WRITE_FIFO   = 4'd4;
   parameter OUTPUT_SHIFT = 4'd5;
-  parameter FINISH       = 4'd6;
+  parameter DEBUG_MODE   = 4'd6;
+  parameter FINISH       = 4'd7;
 
   parameter MAC_CYCLES   = 8'd4;    // ajuste conforme necessidade
 
@@ -116,7 +128,6 @@ module npu_fsm_top (
                .B(QB),
                .Y(MAC0_Y)
              );
-
 
   mac_module mac1 (
                .CLKEXT(CLKEXT),
@@ -208,15 +219,18 @@ module npu_fsm_top (
   // ------------------------------------------------------------------
   // Start synchronizer
   // ------------------------------------------------------------------
+  reg start_prev;
   always @(posedge CLKEXT or posedge RST_GLO)
   begin
     if (RST_GLO)
     begin
       start_sync <= 1'b0;
+      start_prev <= 1'b0;
     end
     else
     begin
-      start_sync <= START;
+      start_prev <= START;
+      start_sync <= START & ~start_prev; // detecta borda de subida
     end
   end
 
@@ -231,11 +245,15 @@ module npu_fsm_top (
       cycle_cnt <= 8'd0;
       BUSY <= 1'b0;
       DONE <= 1'b0;
+      STATE_DEBUG <= IDLE;
     end
     else
     begin
       state <= next_state;
+      STATE_DEBUG <= state; // debug: mostra estado atual
       if (state == COMPUTE)
+        cycle_cnt <= cycle_cnt + 1'b1;
+      else if (state == WRITE_FIFO)
         cycle_cnt <= cycle_cnt + 1'b1;
       else
         cycle_cnt <= 8'd0;
@@ -273,6 +291,9 @@ module npu_fsm_top (
     SEL_OUT = 3'b000;
     EN_COMP = 1'b0;
     RST_COMP = RST_GLO;
+    EN_PISO_DEB = 1'b0;
+    CLR_PISO_DEB = 1'b0;
+    SHIFT_DEB = 1'b0;
 
     case (state)
       IDLE:
@@ -303,23 +324,17 @@ module npu_fsm_top (
       begin
         En_ReLU = 1'b1;
         BYPASS_ReLU = 1'b0;
+        EN_COMP = 1'b1;
+        RST_COMP = 1'b0;
         next_state = WRITE_FIFO;
       end
 
       WRITE_FIFO:
       begin
-        // escreve dois bytes na FIFO (alto primeiro, depois baixo)
+        // escreve resultado do comparador na FIFO
         fifo_wr_en = 1'b1;
-        if (cycle_cnt == 0)
-        begin
-          fifo_data_in = PISO_DOUT;
-          next_state = WRITE_FIFO; // permanece para a segunda escrita
-        end
-        else
-        begin
-          fifo_data_in = PISO_DOUT;
-          next_state = OUTPUT_SHIFT;
-        end
+        fifo_data_in = index; // escreve o índice do maior valor
+        next_state = OUTPUT_SHIFT;
       end
 
       OUTPUT_SHIFT:
@@ -327,8 +342,21 @@ module npu_fsm_top (
         EN_PISO_OUT = 1'b1;
         CLR_PISO_OUT = 1'b0;
         SHIFT_OUT = 1'b1;
-        SEL_OUT = 3'b001; // escolhe dados do piso
+        SEL_OUT = 3'b010; // escolhe dados do comparador (index)
         fifo_rd_en = 1'b0;
+        // Check if debug mode is enabled via SSFR
+        if (SSFR[0]) // debug bit
+          next_state = DEBUG_MODE;
+        else
+          next_state = FINISH;
+      end
+
+      DEBUG_MODE:
+      begin
+        EN_PISO_DEB = 1'b1;
+        CLR_PISO_DEB = 1'b0;
+        SHIFT_DEB = 1'b1;
+        SEL_OUT = 3'b101; // escolhe dados do piso_deb
         next_state = FINISH;
       end
 
@@ -356,10 +384,10 @@ module npu_fsm_top (
     end
     else
     begin
-      if (state == COMPUTE && next_state == RELU_STAGE)
+      if (state == COMPUTE && cycle_cnt >= (MAC_CYCLES - 1))
       begin
         mac0_out_reg <= MAC0_Y;
-        mac1_out_reg <= MAC1_Y; // duplicado como exemplo
+        mac1_out_reg <= MAC1_Y;
       end
     end
   end

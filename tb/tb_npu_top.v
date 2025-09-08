@@ -16,6 +16,7 @@ module tb_npu_top;
     wire        FIFO_EMPTY;
     wire        BUSY;
     wire        DONE;
+    wire [3:0]  STATE_DEBUG;
     
     npu_top npu_inst (
         .CLKEXT(CLKEXT),
@@ -32,7 +33,8 @@ module tb_npu_top;
         .FIFO_FULL(FIFO_FULL),
         .FIFO_EMPTY(FIFO_EMPTY),
         .BUSY(BUSY),
-        .DONE(DONE)
+        .DONE(DONE),
+        .STATE_DEBUG(STATE_DEBUG)
     );
     
     initial begin
@@ -81,15 +83,18 @@ module tb_npu_top;
         $display("  BUSY = %b, DONE = %b", BUSY, DONE);
         
         $display("\n=== Aguardando Processamento ===");
-        repeat(20) begin
-            #10;
-            if (DONE == 1) begin
-                $display("Tempo: %t - Operacao concluida!", $time);
-              
-            end
-            if ($time > 1000) begin
-                $display("Tempo: %t - Timeout! Operacao nao concluida", $time);
-               
+        begin : wait_loop1
+            integer i;
+            for (i = 0; i < 50; i = i + 1) begin
+                #10;
+                if (DONE == 1) begin
+                    $display("Tempo: %t - Operacao concluida!", $time);
+                    disable wait_loop1;
+                end
+                if ($time > 1000) begin
+                    $display("Tempo: %t - Timeout! Operacao nao concluida", $time);
+                    disable wait_loop1;
+                end
             end
         end
         
@@ -110,11 +115,14 @@ module tb_npu_top;
         START = 0;
         $display("Tempo: %t - Segunda operacao iniciada", $time);
         
-        repeat(20) begin
-            #10;
-            if (DONE == 1) begin
-                $display("Tempo: %t - Segunda operacao concluida!", $time);
-               
+        begin : wait_loop2
+            integer i;
+            for (i = 0; i < 50; i = i + 1) begin
+                #10;
+                if (DONE == 1) begin
+                    $display("Tempo: %t - Segunda operacao concluida!", $time);
+                    disable wait_loop2;
+                end
             end
         end
         
@@ -127,8 +135,8 @@ module tb_npu_top;
     
    
     initial begin
-        $monitor("Tempo: %t | CLK: %b | START: %b | BUSY: %b | DONE: %b | D_OUT: %h | FIFO: %b/%b", 
-                 $time, CLKEXT, START, BUSY, DONE, D_OUT, FIFO_FULL, FIFO_EMPTY);
+        $monitor("Tempo: %t | CLK: %b | START: %b | BUSY: %b | DONE: %b | STATE: %d | D_OUT: %h | FIFO: %b/%b", 
+                 $time, CLKEXT, START, BUSY, DONE, STATE_DEBUG, D_OUT, FIFO_FULL, FIFO_EMPTY);
     end
     
     
