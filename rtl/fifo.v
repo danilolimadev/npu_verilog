@@ -6,7 +6,7 @@ module fifo #(
     input clk,
     input rst,
     input enable,
-    input wr_en,
+    input wf_en,
     input rd_en,
     input [DATA_WIDTH-1:0] data_in,
     output reg [DATA_WIDTH-1:0] data_out,
@@ -34,7 +34,7 @@ module fifo #(
             data_out <= 0;
         end else if (enable) begin
             // Escrita
-            if (wr_en && !full) begin
+            if (wf_en && !full) begin
                 mem[wr_ptr[ADDR_WIDTH-1:0]] <= data_in;
                 wr_ptr <= wr_ptr + 1;
                 count  <= count + 1;
